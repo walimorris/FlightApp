@@ -35,5 +35,22 @@ public class Main {
 
         nycToLv.add1Passenger();
         System.out.println(getAllPassengers());
+
+        System.out.println("Creating new flight seatacToOh");
+        System.out.println("Creating new flight laxToCin");
+        Flight seatacToOh = new Flight(3, 'P');
+        Flight laxToCin = new Flight(4, 'E');
+        System.out.println("\nseatacToOh Flight: #" + seatacToOh.getFlightNumber());
+        System.out.println("laxToCin Flight: #" + laxToCin.getFlightNumber());
+        System.out.println("[ATTENTION!]Swapping Flight# : seatacToOh - laxToCin");
+        swapFlightNumbers(seatacToOh, laxToCin);
+        System.out.println("\nseatacToOh Flight: #" + seatacToOh.getFlightNumber());
+        System.out.println("laxToCin Flight: #" + laxToCin.getFlightNumber());
+    }
+
+    public static void swapFlightNumbers(Flight i, Flight j) {
+        int k = i.getFlightNumber();
+        i.setFlightNumber(j.getFlightNumber());
+        j.setFlightNumber(k);
     }
 }

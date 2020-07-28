@@ -3,8 +3,10 @@ package com.morris.flightapp;
 public class Flight {
     private int passengers;
     private static int allPassengers;
+    private static int maxPassengerPerFlight;
     private final int seatCapacity;
     private int seatsAvailable;
+    private int totalCheckedBags;
     private int flightNumber;
     private char flightClass;
     private boolean[] isSeatAvailable = new boolean[seatsAvailable];
@@ -13,6 +15,7 @@ public class Flight {
         this.passengers = 0;
         this.seatCapacity = 150;
         this.seatsAvailable = 150;
+        this.totalCheckedBags = 0;
         this.flightNumber = 0;
         this.flightClass = 'a';
     }
@@ -33,7 +36,7 @@ public class Flight {
      * and decrements number of available seats on flight.
      */
     public void add1Passenger() {
-        if (this.passengers < this.seatCapacity) {
+        if ( hasSeating() /* && this.passengers < maxPassengerPerFlight */ ) {
             this.passengers++;
             allPassengers++;
             this.seatsAvailable--;
@@ -41,6 +44,25 @@ public class Flight {
             /* produces message alert "capacity full" */
             handleTooManyPassengers();
         }
+    }
+
+    /**
+     * If there is seating available on flight, adds a passenger to the flight and the passenger's number of bags added
+     * onto the total bag count on flight.
+     * @param bags : number of bags passenger carries onto flight
+     */
+    public void add1Passenger(int bags) {
+        if (hasSeating()) {
+            add1Passenger();
+            totalCheckedBags += bags;
+        }
+    }
+
+    /* boolean that checks if passengers on flight is less than seats available on flight. This methods works
+     * in conjunction with add1Passenger() methods.
+     */
+    private boolean hasSeating() {
+        return this.passengers < this.seatsAvailable;
     }
 
     /**
@@ -68,6 +90,13 @@ public class Flight {
     public static void resetAllpassengers() {
         allPassengers = 0;
     }
+
+    /* static {
+        AdminService admin = new AdminService();
+        admin.connect();
+        maxPassengerPerFlight = admin.isRestricted() ? admin.getMaxFlightPassengers() : Integer.MAX_VALUE;
+        admin.close();
+    } */
 
     /**
      * Prints an error message to the console if passenger capacity has been reached on the flight.
@@ -126,5 +155,13 @@ public class Flight {
 
     public void setIsSeatAvailable(boolean[] isSeatAvailable) {
         this.isSeatAvailable = isSeatAvailable;
+    }
+
+    public int getTotalCheckedBags() {
+        return totalCheckedBags;
+    }
+
+    public void setTotalCheckedBags(int totalCheckedBags) {
+        this.totalCheckedBags = totalCheckedBags;
     }
 }
