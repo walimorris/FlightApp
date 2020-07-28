@@ -30,7 +30,7 @@ public class Flight {
      */
     public void remove1Passenger() {
         System.out.println("[ATTENTION!] Removed one passenger");
-0        this.passengers--;
+        this.passengers--;
         this.seatsAvailable++;
     }
 
