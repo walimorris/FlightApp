@@ -53,8 +53,15 @@ public class Main {
         System.out.println("Adding Passengers: " + p1.getPassengerName() + ", " + p2.getPassengerName());
         f.addPassengers(p1, p2);
         System.out.println("TotalBags for flight: " + f.getTotalCheckedBags());
-    }
 
+        CargoFlight c130 = new CargoFlight(1000.0f);
+        c130.add1Package(20, 1, 5);
+        System.out.println(c130.getUsedCargoSpace()); // 100.0
+        c130.add1Package(15, 2, 11);
+        System.out.println(c130.getUsedCargoSpace());
+        c130.add1Package(60, 6, 30);
+        System.out.println(c130.getUsedCargoSpace()); // prints error and cargo info
+    }
     public static void swapFlightNumbers(Flight i, Flight j) {
         int k = i.getFlightNumber();
         i.setFlightNumber(j.getFlightNumber());
