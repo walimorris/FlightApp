@@ -52,7 +52,7 @@ public class Flight {
      * @param bags : number of bags passenger carries onto flight
      */
     public void add1Passenger(int bags) {
-        if (hasSeating()) {
+        if ( hasSeating()) {
             add1Passenger();
             totalCheckedBags += bags;
         }
