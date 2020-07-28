@@ -55,8 +55,23 @@ public class Flight {
         if ( hasSeating() ) {
             add1Passenger();
             totalCheckedBags += bags;
-        } else { 
-            handleTooManyPassengers(); 
+        } else {
+            handleTooManyPassengers();
+        }
+    }
+
+    /**
+     * Allows client to add multiple passengers at one time. If adding the number of passengers to the total flight
+     * count is less than the flight capacity, add the passengers to flight count and iterate each passenger to
+     * check how many bags they are adding to the flight.
+     * @param list : list of passengers with parameters of bag count
+     */
+    public void addPassengers(Passenger... list) {
+        if ( hasSeating(list.length) ) {
+            this.passengers += list.length;
+            for (Passenger passenger : list) {
+                totalCheckedBags += passenger.getCheckedBags();
+            }
         }
     }
 
@@ -65,6 +80,13 @@ public class Flight {
      */
     private boolean hasSeating() {
         return this.passengers < this.seatsAvailable;
+    }
+
+    /* used in conjunction with adding a list of passengers to one flight. Adds the number of passengers currently
+     * on flight and the number being added. returns true if we can add passengers to flight and false otherwise.
+     */
+    private boolean hasSeating(int count) {
+        return this.passengers + count <= this.seatsAvailable;
     }
 
     /**

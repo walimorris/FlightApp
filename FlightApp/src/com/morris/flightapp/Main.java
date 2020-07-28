@@ -46,6 +46,13 @@ public class Main {
         swapFlightNumbers(seatacToOh, laxToCin);
         System.out.println("\nseatacToOh Flight: #" + seatacToOh.getFlightNumber());
         System.out.println("laxToCin Flight: #" + laxToCin.getFlightNumber());
+
+        Flight f = new Flight();
+        Passenger p1 = new Passenger(2, 0, 8.00, "Jacob", "Smith");
+        Passenger p2 = new Passenger(1, 0, 8.00, "Maria", "Gonzalez");
+        System.out.println("Adding Passengers: " + p1.getPassengerName() + ", " + p2.getPassengerName());
+        f.addPassengers(p1, p2);
+        System.out.println("TotalBags for flight: " + f.getTotalCheckedBags());
     }
 
     public static void swapFlightNumbers(Flight i, Flight j) {
