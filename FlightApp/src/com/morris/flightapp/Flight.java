@@ -2,13 +2,30 @@ package com.morris.flightapp;
 
 public class Flight {
     private int passengers;
+    private static int allPassengers;
     private final int seatCapacity;
     private int seatsAvailable;
+    private int flightNumber;
+    private char flightClass;
+    private boolean[] isSeatAvailable = new boolean[seatsAvailable];
 
     public Flight() {
         this.passengers = 0;
         this.seatCapacity = 150;
         this.seatsAvailable = 150;
+        this.flightNumber = 0;
+        this.flightClass = 'a';
+    }
+
+    /**
+     * Constructs flight with default fields and adds a flight number and flight class
+     * @param flightNumber : Flight number
+     * @param flightClass : Flight class
+     */
+    public Flight(int flightNumber, char flightClass) {
+        this();
+        this.flightNumber = flightNumber;
+        this.flightClass = flightClass;
     }
 
     /**
@@ -18,6 +35,7 @@ public class Flight {
     public void add1Passenger() {
         if (this.passengers < this.seatCapacity) {
             this.passengers++;
+            allPassengers++;
             this.seatsAvailable--;
         } else {
             /* produces message alert "capacity full" */
@@ -31,7 +49,24 @@ public class Flight {
     public void remove1Passenger() {
         System.out.println("[ATTENTION!] Removed one passenger ");
         this.passengers--;
+        allPassengers--;
         this.seatsAvailable++;
+    }
+
+    /**
+     * allPassengers is a private static field so this method's purpose is for the entire Flight class and impacts
+     * all instances of Flight in a client.
+     * @return : returns number of all Passengers across all instances of Flight
+     */
+    public static int getAllPassengers() {
+        return allPassengers;
+    }
+
+    /**
+     * resets all instances of Flight passengers to 0
+     */
+    public static void resetAllpassengers() {
+        allPassengers = 0;
     }
 
     /**
@@ -67,5 +102,29 @@ public class Flight {
      */
     public int getSeatCapacity() {
         return this.seatCapacity;
+    }
+
+    public int getFlightNumber() {
+        return flightNumber;
+    }
+
+    public void setFlightNumber(int flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+
+    public char getFlightClass() {
+        return flightClass;
+    }
+
+    public void setFlightClass(char flightClass) {
+        this.flightClass = flightClass;
+    }
+
+    public boolean[] getIsSeatAvailable() {
+        return isSeatAvailable;
+    }
+
+    public void setIsSeatAvailable(boolean[] isSeatAvailable) {
+        this.isSeatAvailable = isSeatAvailable;
     }
 }

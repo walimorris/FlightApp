@@ -1,5 +1,8 @@
 package com.morris.flightapp;
 
+import static com.morris.flightapp.Flight.getAllPassengers;
+import static com.morris.flightapp.Flight.resetAllpassengers;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -24,5 +27,13 @@ public class Main {
 
         Passenger bob = new Passenger("Bob", "Dylan");
         System.out.println("New passenger: " + bob.getPassengerName());
+        System.out.println("\n[Attention!]Resetting all passengers");
+        resetAllpassengers();
+
+        Flight flight3 = new Flight(120, 'C');
+        System.out.println("Flight #: " + flight3.getFlightNumber() + " " + "Flight Class: " + flight3.getFlightClass());
+
+        nycToLv.add1Passenger();
+        System.out.println(getAllPassengers());
     }
 }
