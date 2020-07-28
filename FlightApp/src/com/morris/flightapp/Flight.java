@@ -29,7 +29,7 @@ public class Flight {
      * removes one passenger from flight and makes one seat on flight available.
      */
     public void remove1Passenger() {
-        System.out.println("[ATTENTION!] Removed one passenger");
+        System.out.println("[ATTENTION!] Removed one passenger ");
         this.passengers--;
         this.seatsAvailable++;
     }

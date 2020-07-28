@@ -21,5 +21,8 @@ public class Main {
         System.out.println("NYC to LV flight seats available: " + nycToLv.getSeatsAvailable());
         nycToLv.remove1Passenger();
         System.out.println("NYC to LV flight seats available: " + nycToLv.getSeatsAvailable());
+
+        Passenger bob = new Passenger("Bob", "Dylan");
+        System.out.println("New passenger: " + bob.getPassengerName());
     }
 }
