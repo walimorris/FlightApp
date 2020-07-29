@@ -1,6 +1,9 @@
 package com.morris.flightapp;
 
-public class Flight {
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Flight implements Comparable<Flight>, Iterable<Passenger> {
     private int passengers;
     private static int allPassengers;
     private static int maxPassengerPerFlight;
@@ -10,6 +13,7 @@ public class Flight {
     private int flightNumber;
     private char flightClass;
     private boolean[] isSeatAvailable = new boolean[seatsAvailable];
+    private ArrayList<Passenger> passengerArrayList;
 
     public Flight() {
         this.passengers = 0;
@@ -18,6 +22,7 @@ public class Flight {
         this.totalCheckedBags = 0;
         this.flightNumber = 0;
         this.flightClass = 'a';
+        passengerArrayList = new ArrayList<>();
     }
 
     public Flight(int seatCapacity) {
@@ -60,6 +65,15 @@ public class Flight {
         if ( hasSeating() ) {
             add1Passenger();
             totalCheckedBags += bags;
+        } else {
+            handleTooManyPassengers();
+        }
+    }
+
+    public void add1Passenger(Passenger passenger) {
+        if ( hasSeating() ) {
+            add1Passenger();
+            passengerArrayList.add(passenger);
         } else {
             handleTooManyPassengers();
         }
@@ -192,5 +206,14 @@ public class Flight {
 
     public void setTotalCheckedBags(int totalCheckedBags) {
         this.totalCheckedBags = totalCheckedBags;
+    }
+
+    public int compareTo(Flight flight) {
+        int returnValue = flight.flightNumber - this.flightNumber;
+        return returnValue;
+    }
+
+    public Iterator<Passenger> iterator() {
+        return passengerArrayList.iterator();
     }
 }

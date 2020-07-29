@@ -1,6 +1,7 @@
 package com.morris.flightapp;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 import static com.morris.flightapp.Flight.getAllPassengers;
 import static com.morris.flightapp.Flight.resetAllpassengers;
@@ -83,6 +84,22 @@ public class Main {
         for ( Passenger p: passengers ) {
             System.out.println(p.getPassengerName());
         }
+
+        Flight f175 = new Flight(175, 'P');
+        Flight f160 = new Flight(160, 'P');
+        f175.add1Passenger(new Passenger("Jim", "Jones", 3, 122));
+        f175.add1Passenger(new Passenger("Rosa", "Vargas", 3, 455));
+        f175.add1Passenger(new Passenger("Jerome", "Morris", 2, 223));
+        f175.add1Passenger(new Passenger("Santiago", "Ramirez", 1, 105));
+        Iterator<Passenger> iter = f175.iterator();
+
+        // results of implementing iterable in Flight.java
+        while ( iter.hasNext() ) {
+            Passenger p = iter.next();
+            System.out.println(p.getPassengerName());
+        }
+        // check how many seats are left on flight
+        System.out.println("Seats left on f175: " + f175.getSeatsAvailable()); // returns 146
     }
     public static void swapFlightNumbers(Flight i, Flight j) {
         int k = i.getFlightNumber();

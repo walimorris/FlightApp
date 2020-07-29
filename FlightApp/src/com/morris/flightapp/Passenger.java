@@ -1,6 +1,6 @@
 package com.morris.flightapp;
 
-public class Passenger implements Comparable<Object> {
+public class Passenger implements Comparable<Passenger> {
     private int checkedBags;
     private int freeBags;
     private double perBagFee;
@@ -109,8 +109,7 @@ public class Passenger implements Comparable<Object> {
         return fullName;
     }
 
-    public int compareTo(Object o) {
-        Passenger p = (Passenger) o;
+    public int compareTo(Passenger p) {
         int returnValue = p.memberLevel - this.memberLevel;
         if (returnValue == 0) {
             returnValue = p.memberDays - this.memberDays;
