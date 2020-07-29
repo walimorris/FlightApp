@@ -4,7 +4,7 @@ public class Flight {
     private int passengers;
     private static int allPassengers;
     private static int maxPassengerPerFlight;
-    private final int seatCapacity;
+    private int seatCapacity;
     private int seatsAvailable;
     private int totalCheckedBags;
     private int flightNumber;
@@ -14,10 +14,15 @@ public class Flight {
     public Flight() {
         this.passengers = 0;
         this.seatCapacity = 150;
-        this.seatsAvailable = 150;
+        this.seatsAvailable = this.seatCapacity;
         this.totalCheckedBags = 0;
         this.flightNumber = 0;
         this.flightClass = 'a';
+    }
+
+    public Flight(int seatCapacity) {
+        this();
+        this.seatCapacity = seatCapacity;
     }
 
     /**

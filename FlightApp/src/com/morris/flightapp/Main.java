@@ -1,5 +1,7 @@
 package com.morris.flightapp;
 
+import java.util.Arrays;
+
 import static com.morris.flightapp.Flight.getAllPassengers;
 import static com.morris.flightapp.Flight.resetAllpassengers;
 
@@ -61,6 +63,26 @@ public class Main {
         System.out.println(c130.getUsedCargoSpace());
         c130.add1Package(60, 6, 30);
         System.out.println(c130.getUsedCargoSpace()); // prints error and cargo info
+
+        CargoFlight c131 = new CargoFlight(1000, 10, 'C');
+        System.out.println(c131.getFlightNumber());
+        System.out.println(c131.getMaxCargoSpace());
+
+        Flight c130f = new CargoFlight(15);
+        c130f.add1Passenger();
+        System.out.println(c130f.getPassengers());
+        System.out.println(c130f.getSeatCapacity());
+
+        Passenger[] passengers = {
+                new Passenger("Luisa", "Vargas", 3, 365),
+                new Passenger("Demetrius", "Morris", 3, 367),
+                new Passenger("Jacob", "McDonald", 1, 455),
+                new Passenger("Simon", "Reynolds", 2, 30),
+        };
+        Arrays.sort(passengers);
+        for ( Passenger p: passengers ) {
+            System.out.println(p.getPassengerName());
+        }
     }
     public static void swapFlightNumbers(Flight i, Flight j) {
         int k = i.getFlightNumber();
