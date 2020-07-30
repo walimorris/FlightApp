@@ -100,6 +100,16 @@ public class Main {
         }
         // check how many seats are left on flight
         System.out.println("Seats left on f175: " + f175.getSeatsAvailable()); // returns 146
+
+        // Implementing the nested RewarProgram in the Passenger Class
+        Passenger brooke = new Passenger("Brooke", "Ulysis", 3, 365);
+        System.out.println(brooke.getRewardProgram().getMemberLevel());
+
+        // implementing the sorted Iterator
+        for ( Passenger p : f175.getOrderedPassengers() ) {
+            System.out.println(p.getPassengerName());
+        }
+
     }
     public static void swapFlightNumbers(Flight i, Flight j) {
         int k = i.getFlightNumber();

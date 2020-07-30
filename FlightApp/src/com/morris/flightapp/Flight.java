@@ -1,9 +1,19 @@
 package com.morris.flightapp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class Flight implements Comparable<Flight>, Iterable<Passenger> {
+
+    private class FlightIterable implements Iterable<Passenger> {
+        public Iterator<Passenger> iterator() {
+            Passenger[] passengers = new Passenger[Flight.this.passengerArrayList.size()];
+            Flight.this.passengerArrayList.toArray(passengers);
+            Arrays.sort(passengers);
+            return Arrays.asList(passengers).iterator();
+        }
+    }
     private int passengers;
     private static int allPassengers;
     private static int maxPassengerPerFlight;
@@ -215,5 +225,10 @@ public class Flight implements Comparable<Flight>, Iterable<Passenger> {
 
     public Iterator<Passenger> iterator() {
         return passengerArrayList.iterator();
+    }
+
+    public Iterable<Passenger> getOrderedPassengers() {
+        FlightIterable orderedPassengers = new FlightIterable();
+        return orderedPassengers;
     }
 }
