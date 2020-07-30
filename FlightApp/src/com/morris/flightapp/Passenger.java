@@ -16,7 +16,6 @@ public class Passenger implements Comparable<Passenger> {
 
         public int getMemberDays() {
             return this.memberDays;
-
         }
 
         public void setMemberDays(int memberDays) {
